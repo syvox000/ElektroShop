@@ -1,0 +1,270 @@
+/* ========================================
+   ELECTROHUB - MEDIA QUERIES & RESPONSIVE
+   ======================================== */
+
+/* TABLET (768px ve altı) */
+@media (max-width: 768px) {
+    :root {
+        font-size: 14px;
+    }
+
+    /* Header */
+    nav {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    /* Hero */
+    .hero {
+        padding: 3rem 1.5rem;
+    }
+
+    /* Layout */
+    .container {
+        padding: 0 1rem;
+    }
+
+    /* Products */
+    .products-grid {
+        gap: 1rem;
+    }
+
+    /* Forms */
+    .newsletter-form {
+        flex-direction: column;
+    }
+
+    /* Cart */
+    .cart-container {
+        grid-template-columns: 1fr;
+    }
+
+    /* Product Detail */
+    .product-detail {
+        grid-template-columns: 1fr;
+    }
+
+    /* Footer */
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* MOBILE (480px ve altı) */
+@media (max-width: 480px) {
+    :root {
+        font-size: 13px;
+    }
+
+    /* Header */
+    nav {
+        padding: 0 0.5rem;
+    }
+
+    .nav-menu {
+        display: none;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    /* Hero */
+    .hero {
+        padding: 2rem 1rem;
+    }
+
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+
+    /* Section Title */
+    .section-title {
+        font-size: 1.3rem;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Section */
+    .section {
+        padding: 1.5rem 0;
+    }
+
+    /* Products Grid */
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .product-image {
+        height: 150px;
+        font-size: 2rem;
+    }
+
+    /* Categories */
+    .categories {
+        grid-template-columns: 1fr;
+    }
+
+    /* Features */
+    .features {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+        gap: 1rem;
+    }
+
+    /* Footer */
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .footer-bottom {
+        font-size: 0.8rem;
+    }
+
+    /* Buttons */
+    .btn {
+        width: 100%;
+        padding: 0.7rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    /* Forms */
+    input, select, textarea {
+        font-size: 16px;
+        padding: 0.7rem;
+    }
+
+    /* Cart */
+    .cart-item {
+        gap: 1rem;
+    }
+
+    .item-actions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cart-summary {
+        padding: 1rem;
+    }
+
+    /* Product Detail */
+    .main-image {
+        height: 200px;
+        font-size: 2rem;
+    }
+
+    .thumbnail {
+        width: 50px;
+        height: 50px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .action-buttons button {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* SMALL DEVICES (320px) */
+@media (max-width: 320px) {
+    :root {
+        font-size: 12px;
+    }
+
+    .logo {
+        font-size: 1rem;
+    }
+
+    .hero h1 {
+        font-size: 1.3rem;
+    }
+
+    .section-title {
+        font-size: 1.1rem;
+    }
+
+    /* Utilities for small screens */
+    .hidden-xs {
+        display: none;
+    }
+}
+
+/* LANDSCAPE ORIENTATION */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        padding: 2rem 2rem;
+    }
+
+    .section {
+        padding: 2rem 0;
+    }
+
+    header {
+        padding: 0.5rem 0;
+    }
+
+    nav {
+        padding: 0 1rem;
+    }
+}
+
+/* LARGE SCREENS (1920px ve üzeri) */
+@media (min-width: 1920px) {
+    .container {
+        max-width: 1400px;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    .section {
+        padding: 5rem 0;
+    }
+}
+
+/* TOUCH DEVICES */
+@media (hover: none) and (pointer: coarse) {
+    .btn,
+    .product-card,
+    .category-card {
+        transition: none;
+    }
+
+    .btn:active {
+        transform: scale(0.98);
+    }
+}
+
+/* PRINT STYLES */
+@media print {
+    header,
+    footer,
+    .header-icons,
+    .nav-menu,
+    .cta-buttons,
+    .btn-add-cart,
+    .newsletter {
+        display: none;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    .product-card {
+        page-break-inside: avoid;
+        border: 1px solid #000;
+    }
+
+    a {
+        text-decoration: underline;
+    }
+}

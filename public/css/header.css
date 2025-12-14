@@ -1,0 +1,204 @@
+/* ========================================
+   ELECTROHUB - HEADER & NAVIGATION STYLES
+   ======================================== */
+
+header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 0.6rem 0; /* vertical padding only; sides handled by header-content/nav */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: none; /* allow full-width nav so header content can reach edges */
+    width: 100%;
+    margin: 0; /* remove auto-centering so edges align */
+    margin: 0;
+}
+
+.logo {
+    font-size: 1.9rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: opacity 0.3s;
+}
+
+.logo:hover {
+    opacity: 0.9;
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 1.5rem;
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s;
+    padding: 0.3rem 0;
+    font-size: 0.95rem;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-menu a:hover {
+    border-bottom-color: var(--accent-color);
+}
+
+/* Boxed nav link style for header navigation */
+.header-content nav a {
+    background: rgba(255,255,255,0.08);
+    padding: 0.45rem 0.9rem;
+    border-radius: 8px;
+    display: inline-block;
+    transition: background 220ms ease, transform 160ms ease;
+}
+.header-content nav a:hover {
+    background: rgba(255,255,255,0.16);
+    transform: translateY(-2px);
+}
+
+.header-icons {
+    display: flex;
+    gap: 1.3rem;
+    align-items: center;
+}
+
+.icon-btn {
+    background: #ff7B00;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    position: relative;
+    transition: transform 0.3s;
+    padding: 0.6rem 0.8rem;
+    backdrop-filter: blur(10px);
+}
+
+.icon-btn:hover {
+    transform: scale(1.1);
+}
+
+.header-search {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+.header-search input {
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 0.5rem;
+    min-width: 250px;
+    font-size: 1rem;
+}
+
+.header-search input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.header-search input:focus {
+    outline: none;
+}
+
+/* Animated search panel (positioned near header icons) */
+.search-panel {
+    position: absolute;
+    /* We will set precise left/top from JS. */
+    background: rgba(255,255,255,0.9); /* semi-transparent */
+    backdrop-filter: blur(6px);
+    color: #111;
+    padding: 0.45rem 0.6rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(6,12,24,0.18);
+    transform-origin: bottom right; /* open upward from the toggle */
+    transform: translateY(8px) scale(0.98);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 220ms cubic-bezier(.2,.9,.2,1), transform 220ms cubic-bezier(.2,.9,.2,1);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 240px;
+    z-index: 220;
+}
+.search-panel.open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+.search-panel input {
+    width: 100%;
+    padding: 0.5rem 0.6rem;
+    border: 1px solid #e6e6e6;
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+.search-panel .icon-btn {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    color: #666;
+    padding: 0.2rem 0.4rem;
+}
+
+.badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--accent-color);
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+/* RESPONSIVE HEADER */
+@media (max-width: 768px) {
+    nav {
+        padding: 0 1rem;
+    }
+
+    .nav-menu {
+        gap: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .logo {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-menu {
+        gap: 0.5rem;
+    }
+
+    .header-icons {
+        gap: 1rem;
+    }
+}

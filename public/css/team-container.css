@@ -1,0 +1,80 @@
+/* Misyon & Vizyon tarzı ana kutu */
+.info-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.info-title {
+  font-size: 24px;
+  color: #1e6bff;
+  margin-bottom: 20px;
+}
+
+/* Ekip Alanı */
+.team-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.team-card {
+  width: 180px; /* biraz küçültüldü */
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-6px);
+}
+
+/* Yuvarlak Profil Görseli */
+.team-card img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 50%; /* TAM DAİRE */
+  margin-bottom: 8px;
+  border: 4px solid #f0f0f0;
+}
+
+/* Yazı boşlukları azaltıldı */
+.team-card h3 {
+  margin: 6px 0 2px;
+  font-size: 17px;
+  color: #333;
+}
+
+.team-card p {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 8px;
+}
+
+/* Instagram Butonu */
+.instagram-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 18px;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.instagram-btn:hover {
+  transform: scale(1.1);
+}
+.instagram-btn i {
+  pointer-events: none;
+}
+.instagram-btn svg {
+  display: block;
+  margin: auto;
+}

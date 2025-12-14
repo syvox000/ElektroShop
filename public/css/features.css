@@ -1,0 +1,107 @@
+/* ========================================
+   ELECTROHUB - FEATURES & NEWSLETTER STYLES
+   ======================================== */
+
+/* FEATURES SECTION */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    background: var(--bg-light);
+    padding: 3rem 2rem;
+    border-radius: 8px;
+}
+
+.feature-item {
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+
+.feature-item h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.feature-item p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* NEWSLETTER SECTION */
+.newsletter {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 3rem 2rem;
+    border-radius: 8px;
+    text-align: center;
+    margin: 3rem 0;
+}
+
+.newsletter h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.newsletter p {
+    margin-bottom: 2rem;
+    opacity: 0.95;
+    font-size: 1.1rem;
+}
+
+/* RESPONSIVE FEATURES & NEWSLETTER */
+@media (max-width: 768px) {
+    .features {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+        padding: 2rem 1rem;
+    }
+
+    .feature-item {
+        padding: 1rem;
+    }
+
+    .feature-icon {
+        font-size: 2rem;
+    }
+
+    .feature-item h3 {
+        font-size: 1rem;
+    }
+
+    .feature-item p {
+        font-size: 0.85rem;
+    }
+
+    .newsletter {
+        padding: 2rem 1rem;
+        margin: 2rem 0;
+    }
+
+    .newsletter h2 {
+        font-size: 1.5rem;
+    }
+
+    .newsletter p {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .newsletter {
+        padding: 1.5rem 1rem;
+    }
+}
