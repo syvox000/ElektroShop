@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hakkında - ElektroShop</title>
+    <link rel="stylesheet" href="public/css/index.css">
+</head>
+<body>
+    <header>
+        <div class="header-content" style="display: flex; align-items: center; gap: 2rem; padding: 0.8rem 2rem; justify-content: space-between;">
+            <!-- SOL TARAF: LOGO -->
+            <a href="index.html" class="logo" style="text-decoration: none; cursor: pointer; font-size: 2rem; white-space: nowrap;">⚡ ElektroShop</a>
+
+            <!-- ORTA: NAV LINKLERI -->
+            <nav style="display: flex; gap: 1.5rem; align-items: center; flex: 1; justify-content: center;">
+                <a href="index.html" style="text-decoration: none; color: white; font-weight: 500; font-size: 0.9rem; background: rgba(255, 255, 255, 0.15); padding: 0.6rem 1rem; border-radius: 6px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">Ana Sayfa</a>
+                <a href="products.html" style="text-decoration: none; color: white; font-weight: 500; font-size: 0.9rem; background: rgba(255, 255, 255, 0.15); padding: 0.6rem 1rem; border-radius: 6px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">Ürünler</a>
+                <a href="about.html" style="text-decoration: none; color: white; font-weight: 500; font-size: 0.9rem; background: rgba(255, 255, 255, 0.15); padding: 0.6rem 1rem; border-radius: 6px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">Hakkında</a>
+                <a href="contact.html" style="text-decoration: none; color: white; font-weight: 500; font-size: 0.9rem; background: rgba(255, 255, 255, 0.15); padding: 0.6rem 1rem; border-radius: 6px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">İletişim</a>
+            </nav>
+
+            <!-- SAĞ TARAF: ARAMA, FAVORİLER, SEPET -->
+            <div style="display: flex; align-items: center; gap: 0.6rem;">
+                <button class="icon-btn" onclick="toggleSearch()">🔍</button>
+                <button class="icon-btn" onclick="goToWishlist()">❤️</button>
+                <button class="icon-btn" onclick="goToCart()">🛒</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1fr 1fr 300px; gap: 2rem; margin-bottom: 2rem;">
+                <!-- HAKKINDA -->
+                <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <h2 style="margin-bottom: 1rem; color: var(--primary-color);">📌 Hakkımızda</h2>
+                    <p style="line-height: 1.8; color: var(--text-dark); margin-bottom: 1rem;">ElektroShop, Türkiye'nin en güvenilir elektronik satış platformudur. 2025 yılında kurulmuş proje için tasarlanmış bir sitedir. </p>
+                    
+                    <h3 style="margin-top: 1.5rem; margin-bottom: 1rem; color:black;">Neden Bizi Seçmelisiniz?</h3>
+                    <ul style="line-height: 2; color: var(--text-dark);">
+                        <li>✓ 100% Orijinal Ürünler</li>
+                        <li>✓ Hızlı Kargo ve Teslimat</li>
+                        <li>✓ Güvenli Ödeme Sistemi</li>
+                        <li>✓ 30 Gün Para İade Garantisi</li>
+                        <li>✓ 7/24 Müşteri Desteği  ile Müşterilerimizi Memnun Etmek ve En iyi Hizmeti Vermek İçin Çabalıyoruz.</li>
+                    </ul>
+                </div>
+
+                <!-- MİSYON & VİZYON -->
+                <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <h2 style="margin-bottom: 1rem; color: var(--primary-color);">🎯 Misyon & Vizyon</h2>
+                    
+                    <h3 style="margin-bottom: 0.5rem; color: var(--primary-color);">Misyonumuz:</h3>
+                    <p style="line-height: 1.6; color: var(--text-dark); margin-bottom: 1.5rem;">Kullanıcılarımıza en kaliteli elektronik ürünleri en uygun fiyatlarla ulaştırmak ve müşteri memnuniyetini her zaman ön planda tutmak.</p>
+                    
+                    <h3 style="margin-bottom: 0.5rem; color: var(--primary-color);">Vizyonumuz:</h3>
+                    <p style="line-height: 1.6; color: var(--text-dark);">Türkiye'de elektronik satışında lider konuma gelmek, teknolojiye erişimde herkese kolaylık sağlamak.</p>
+                    
+                    <h3 style="margin-top: 1.5rem; margin-bottom: 1rem; color: var(--primary-color);">Değerlerimiz:</h3>
+                    <ul style="line-height: 2; color: var(--text-dark);">
+                        <li>💎 Güven & Saydamlık</li>
+                        <li>⭐ Kalite & Mükemmellik</li>
+                        <li>🤝 Müşteri Odaklılık</li>
+                        <li>🚀 İnovasyon</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                <h2 class="info-title">📌 Ekibimiz</h2>
+                <div class="team-container">
+
+                <div class="team-card">
+                <img src="/public/img/kamil.jpg" alt="Kamil Doğan">
+                <h3>Kamil Doğan</h3>
+                <p>Front Developer</p>
+                <a href="https://www.instagram.com/o6.kamill/" target="_blank" class="instagram-btn" aria-label="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white" >
+                <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 2A3.75 3.75 0 004 7.75v8.5A3.75 3.75 0 007.75 20h8.5a3.75 3.75 0 003.75-3.75v-8.5A3.75 3.75 0 0016.25 4h-8.5zm8.75 1.5a1 1 0 110 2 1 1 0 010-2zM12 7a5 5 0 110 10 5 5 0 010-10zm0 2a3 3 0 100 6 3 3 0 000-6z"/>
+                </svg>
+                </a>
+
+                <div class="team-card">
+                <img src="/public/img/yigit.jpg" alt="Ömer Yiğit Çiriş">
+                <h3>Ömer Yiğit Çiriş</h3>
+                <p>UI / UX Designer</p>
+                <a href="https://www.instagram.com/yigitcris17/" target="_blank" class="instagram-btn" aria-label="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white" >
+                <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 2A3.75 3.75 0 004 7.75v8.5A3.75 3.75 0 007.75 20h8.5a3.75 3.75 0 003.75-3.75v-8.5A3.75 3.75 0 0016.25 4h-8.5zm8.75 1.5a1 1 0 110 2 1 1 0 010-2zM12 7a5 5 0 110 10 5 5 0 010-10zm0 2a3 3 0 100 6 3 3 0 000-6z"/>
+                </svg>
+                </a>
+
+                </div>
+
+                <div class="team-card">
+                <img src="/public/img/sukru.png" alt="Sükrü Özdem">
+                <h3>Şükrü Özdem</h3>
+                <p>Backend Developer</p>
+                <a href="https://www.instagram.com/sukru_ozdem/" target="_blank" class="instagram-btn" aria-label="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white" >
+                <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 2A3.75 3.75 0 004 7.75v8.5A3.75 3.75 0 007.75 20h8.5a3.75 3.75 0 003.75-3.75v-8.5A3.75 3.75 0 0016.25 4h-8.5zm8.75 1.5a1 1 0 110 2 1 1 0 010-2zM12 7a5 5 0 110 10 5 5 0 010-10zm0 2a3 3 0 100 6 3 3 0 000-6z"/>
+                </svg>
+                </a>
+
+                </div>
+
+            </div>
+            </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>ElektroShop</h4>
+                <p>En iyi elektronik ürünleri en uygun fiyatlarla sunuyoruz.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Hızlı Bağlantılar</h4>
+                <a href="index.html">Ana Sayfa</a>
+                <a href="products.html">Ürünler</a>
+                <a href="about.html">Hakkında</a>
+                <a href="contact.html">İletişim</a>
+            </div>
+            <div class="footer-section">
+                <h4>Müşteri Hizmetleri</h4>
+                <a href="/about.html">İade Politikası</a>
+                <a href="/about.html">Kargo Takibi</a>
+                <a href="/about.html">Sıkça Sorulan Sorular</a>
+            </div>
+            <div class="footer-section">
+                <h4>İletişim</h4>
+                <p>📧 kamildogan06@outlook.com</p>
+                <p>📱 +90 (537) 912 21 00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ElektroShop. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <script src="public/js/search.js"></script>
+    <script>
+        function goToCart() { window.location.href = 'cart.html'; }
+        function goToWishlist() { window.location.href = 'wishlist.html'; }
+        function toggleSearch(){
+			alert('Yakında Aktif Olcak!');
+		}
+    </script>
+</body>
+</html>

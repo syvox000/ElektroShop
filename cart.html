@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sepetim - ElektroShop</title>
+    <link rel="stylesheet" href="public/css/index.css">
+</head>
+<body>
+    <!-- BAŞLIK -->
+    <header>
+        <div class="header-content" style="display: flex; align-items: center; gap: 2rem; padding: 0.8rem 2rem; justify-content: space-between;">
+            <!-- SOL TARAF: LOGO -->
+            <a href="index.html" class="logo" style="text-decoration: none; cursor: pointer; font-size: 2rem; white-space: nowrap;">⚡ ElektroShop</a>
+
+            <!-- ORTA: NAV LINKLERI -->
+            <nav style="display: flex; gap: 1.5rem; align-items: center; flex: 1; justify-content: center;">
+                <a href="index.html" style="text-decoration: none; color: white; font-weight: 500; font-size: 0.9rem; background: rgba(255, 255, 255, 0.15); padding: 0.6rem 1rem; border-radius: 6px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">Ana Sayfa</a>
+                <a href="products.html" style="text-decoration: none; color: white; font-weight: 500; font-size: 0.9rem; background: rgba(255, 255, 255, 0.15); padding: 0.6rem 1rem; border-radius: 6px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">Ürünler</a>
+                <a href="about.html" style="text-decoration: none; color: white; font-weight: 500; font-size: 0.9rem; background: rgba(255, 255, 255, 0.15); padding: 0.6rem 1rem; border-radius: 6px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">Hakkında</a>
+                <a href="contact.html" style="text-decoration: none; color: white; font-weight: 500; font-size: 0.9rem; background: rgba(255, 255, 255, 0.15); padding: 0.6rem 1rem; border-radius: 6px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">İletişim</a>
+            </nav>
+
+            <!-- SAĞ TARAF: ARAMA, FAVORİLER, SEPET -->
+            <div style="display: flex; align-items: center; gap: 0.6rem;">
+                <button class="icon-btn" onclick="toggleSearch()">🔍</button>
+                <button class="icon-btn" onclick="goToWishlist()">❤️</button>
+                <button class="icon-btn" onclick="goToCart()">🛒</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- SEPET SAYFASI -->
+    <section class="section">
+        <div class="container">
+            <h1 class="text-center mb-3" style="color: black;">🛒 Sepetim</h1>
+            
+            <div class="cart-container">
+                <div>
+                    <div id="cart-items"></div>
+                </div>
+                <div class="cart-summary">
+                    <h3 style="color: black;">Özet</h3>
+                    <div class="summary-item">
+                        <span>Ürün Sayısı:</span>
+                        <span id="item-count">0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Ara Toplam:</span>
+                        <span id="subtotal">0 ₺</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Kargo:</span>
+                        <span id="shipping">Ücretsiz</span>
+                    </div>
+                    <div class="summary-total">
+                        <span>TOPLAM:</span>
+                        <span id="total">0 ₺</span>
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="checkout()">
+                        Ödemeye Devam Et
+                    </button>
+                    <button class="btn btn-secondary" style="width: 100%; margin-top: 0.5rem;" onclick="continueShopping()">
+                        Alışverişe Devam Et
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>ElektroShop</h4>
+                <p>En iyi elektronik ürünleri en uygun fiyatlarla sunuyoruz.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Hızlı Bağlantılar</h4>
+                <a href="index.html">Ana Sayfa</a>
+                <a href="products.html">Ürünler</a>
+                <a href="about.html">Hakkında</a>
+                <a href="contact.html">İletişim</a>
+            </div>
+            <div class="footer-section">
+                <h4>Müşteri Hizmetleri</h4>
+                <a href="/about.html">İade Politikası</a>
+                <a href="/about.html">Kargo Takibi</a>
+                <a href="/about.html">Sıkça Sorulan Sorular</a>
+            </div>
+            <div class="footer-section">
+                <h4>İletişim</h4>
+                <p>📧 info@elektroshop.com</p>
+                <p>📱 +90 (212) 555-0123</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ElektroShop. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+        function init() {
+            displayCart();
+            updateBadges();
+            calculateTotal();
+        }
+
+        function displayCart() {
+            const cartItems = document.getElementById('cart-items');
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="empty-message">Sepetiniz boş. <a href="index.html" style="color: var(--accent-color);">Alışverişe Başla</a></div>';
+                return;
+            }
+
+            cartItems.innerHTML = '';
+            cart.forEach((item, index) => {
+                cartItems.innerHTML += `
+                    <div class="cart-item">
+                        <div class="item-image" style="width:80px; height:80px; overflow:hidden;">
+    <img src="${item.img}" alt="${item.name}"
+         style="width:100%; height:100%; object-fit:contain;">
+</div>
+
+                        <div class="item-details">
+                            <h3>${item.name}</h3>
+                            <p class="text-light">${item.price.toLocaleString('tr-TR')} ₺</p>
+                        </div>
+                        <div class="item-quantity">
+                            <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">−</button>
+                            <span style="min-width: 30px; text-align: center;">${item.quantity}</span>
+                            <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-weight: bold; margin-bottom: 0.5rem;">
+                                ${(item.price * item.quantity).toLocaleString('tr-TR')} ₺
+                            </div>
+                            <button class="btn btn-danger btn-small" onclick="removeFromCart(${index})">
+                                Sil
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function updateQuantity(index, change) {
+            cart[index].quantity += change;
+            if (cart[index].quantity <= 0) {
+                removeFromCart(index);
+            } else {
+                localStorage.setItem('cart', JSON.stringify(cart));
+                displayCart();
+                calculateTotal();
+                updateBadges();
+            }
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            displayCart();
+            calculateTotal();
+            updateBadges();
+        }
+
+        function calculateTotal() {
+            let subtotal = 0;
+            cart.forEach(item => {
+                subtotal += item.price * item.quantity;
+            });
+
+            document.getElementById('item-count').textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('subtotal').textContent = subtotal.toLocaleString('tr-TR') + ' ₺';
+            document.getElementById('total').textContent = subtotal.toLocaleString('tr-TR') + ' ₺';
+        }
+
+        function updateBadges() {
+            document.getElementById('cart-count').textContent = cart.length;
+            document.getElementById('wishlist-count').textContent = wishlist.length;
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Lütfen sepetinize ürün ekleyin!');
+                return;
+            }
+            alert('✓ Ödeme ekranına yönlendiriliyorsunuz...\n\nSepetinizin Özeti:\n' + 
+                  cart.map(item => `${item.name} (x${item.quantity})`).join('\n'));
+        }
+
+        function continueShopping() {
+            window.location.href = 'index.html';
+        }
+
+        function goToCart() {
+            window.location.href = 'cart.html';
+        }
+
+        function goToWishlist() {
+            window.location.href = 'wishlist.html';
+        }
+
+        function toggleSearch(){
+			alert('Yakında Aktif Olcak!');
+		}
+
+        init();
+    </script>
+</body>
+</html>

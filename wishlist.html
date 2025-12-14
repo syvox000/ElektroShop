@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorilerim - ElektroShop</title>
+    <link rel="stylesheet" href="public/css/index.css">
+</head>
+<body>
+    <!-- BAŞLIK -->
+    <header>
+        <div class="header-content" style="display: flex; align-items: center; gap: 2rem; padding: 0.8rem 2rem; justify-content: space-between;">
+            <!-- SOL TARAF: LOGO -->
+            <a href="index.html" class="logo" style="text-decoration: none; cursor: pointer; font-size: 2rem; white-space: nowrap;">⚡ ElektroShop</a>
+
+            <!-- ORTA: NAV LINKLERI -->
+            <nav style="display: flex; gap: 1.5rem; align-items: center; flex: 1; justify-content: center;">
+                <a href="index.html" style="text-decoration: none; color: white; font-weight: 500; font-size: 0.9rem; background: rgba(255, 255, 255, 0.15); padding: 0.6rem 1rem; border-radius: 6px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">Ana Sayfa</a>
+                <a href="products.html" style="text-decoration: none; color: white; font-weight: 500; font-size: 0.9rem; background: rgba(255, 255, 255, 0.15); padding: 0.6rem 1rem; border-radius: 6px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">Ürünler</a>
+                <a href="about.html" style="text-decoration: none; color: white; font-weight: 500; font-size: 0.9rem; background: rgba(255, 255, 255, 0.15); padding: 0.6rem 1rem; border-radius: 6px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">Hakkında</a>
+                <a href="contact.html" style="text-decoration: none; color: white; font-weight: 500; font-size: 0.9rem; background: rgba(255, 255, 255, 0.15); padding: 0.6rem 1rem; border-radius: 6px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">İletişim</a>
+            </nav>
+
+            <!-- SAĞ TARAF: ARAMA, FAVORİLER, SEPET -->
+            <div style="display: flex; align-items: center; gap: 0.6rem;">
+                <button class="icon-btn" onclick="toggleSearch()">🔍</button>
+                <button class="icon-btn" onclick="goToWishlist()">❤️</button>
+                <button class="icon-btn" onclick="goToCart()">🛒</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- FAVORİ SAYFASI -->
+    <section class="section">
+        <div class="container">
+            <h1 class="text-center mb-3" style="color: black ;">❤️ Favorilerim</h1>
+            
+            <div id="wishlist-grid" class="products-grid"></div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>ElektroShop</h4>
+                <p>En iyi elektronik ürünleri en uygun fiyatlarla sunuyoruz.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Hızlı Bağlantılar</h4>
+                <a href="index.html">Ana Sayfa</a>
+                <a href="products.html">Ürünler</a>
+                <a href="about.html">Hakkında</a>
+                <a href="contact.html">İletişim</a>
+            </div>
+            <div class="footer-section">
+                <h4>Müşteri Hizmetleri</h4>
+                <a href="/about.html">İade Politikası</a>
+                <a href="/about.html">Kargo Takibi</a>
+                <a href="/about.html">Sıkça Sorulan Sorular</a>
+            </div>
+            <div class="footer-section">
+                <h4>İletişim</h4>
+                <p>📧 kamildogan06@outlook.com</p>
+                <p>📱 +90 (537) 912 21 00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ElektroShop. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+        const categoryNames = {
+            'phone': 'Telefonlar',
+            'laptop': 'Bilgisayarlar',
+            'tablet': 'Tabletler',
+            'watch': 'Saatler',
+            'headphone': 'Kulaklıklar',
+            'camera': 'Kameralar'
+        };
+
+        function init() {
+            displayWishlist();
+            updateBadges();
+        }
+
+        function displayWishlist() {
+            const grid = document.getElementById('wishlist-grid');
+            
+            if (wishlist.length === 0) {
+                grid.innerHTML = '<div class="empty-message" style="grid-column: 1/-1;">Henüz favori ürün eklemediniz. <a href="index.html" style="color: var(--accent-color);">Ürünleri Keşfet</a></div>';
+                return;
+            }
+
+            grid.innerHTML = '';
+            wishlist.forEach(product => {
+                const inCart = cart.some(item => item.id === product.id);
+
+                grid.innerHTML += `
+                    <div class="product-card">
+                        <div class="product-image" style="width:110px; height:110px; overflow:hidden;">
+    <img src="${product.img}" alt="${product.name}"
+         style="width:100%; height:100%; object-fit:contain;">
+    ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+</div>
+
+                        <div class="product-info">
+                            <div class="product-category">${categoryNames[product.category] || product.category}</div>
+                            <h3 class="product-name">${product.name}</h3>
+                            <div class="product-price">${product.price.toLocaleString('tr-TR')} ₺</div>
+                            <div class="product-footer">
+                                <button class="btn btn-primary btn-small" onclick="addToCart(${product.id})" 
+                                    style="${inCart ? 'background: #4caf50;' : ''}">
+                                    ${inCart ? '✓ Sepete Eklendi' : 'Sepete Ekle'}
+                                </button>
+                                <button class="btn btn-danger btn-small" onclick="removeFromWishlist(${product.id})">
+                                    Sil
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function addToCart(productId) {
+            const product = wishlist.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateBadges();
+            displayWishlist();
+        }
+
+        function removeFromWishlist(productId) {
+            wishlist = wishlist.filter(item => item.id !== productId);
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            updateBadges();
+            displayWishlist();
+        }
+
+        function updateBadges() {
+            document.getElementById('cart-count').textContent = cart.length;
+            document.getElementById('wishlist-count').textContent = wishlist.length;
+        }
+
+        function goToCart() {
+            window.location.href = 'cart.html';
+        }
+
+        function goToWishlist() {
+            window.location.href = 'wishlist.html';
+        }
+
+        function toggleSearch() {
+            alert('Yakında Aktif Olacak!');
+        }
+
+        init();
+    </script>
+</body>
+</html>

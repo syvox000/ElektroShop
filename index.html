@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ElektroShop - Ana Sayfa</title>
+	<link rel="stylesheet" href="public/css/index.css">
+</head>
+<body>
+	<header>
+        <div class="header-content" style="display: flex; align-items: center; gap: 2rem; padding: 0.8rem 2rem; justify-content: space-between;">
+            <!-- SOL TARAF: LOGO -->
+            <a href="index.html" class="logo" style="text-decoration: none; cursor: pointer; font-size: 2rem; white-space: nowrap;">⚡ ElektroShop</a>
+
+            <!-- ORTA: NAV LINKLERI -->
+            <nav style="display: flex; gap: 1.5rem; align-items: center; flex: 1; justify-content: center;">
+                <a href="index.html" style="text-decoration: none; color: white; font-weight: 500; font-size: 0.9rem; background: rgba(255, 255, 255, 0.15); padding: 0.6rem 1rem; border-radius: 6px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">Ana Sayfa</a>
+                <a href="products.html" style="text-decoration: none; color: white; font-weight: 500; font-size: 0.9rem; background: rgba(255, 255, 255, 0.15); padding: 0.6rem 1rem; border-radius: 6px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">Ürünler</a>
+                <a href="about.html" style="text-decoration: none; color: white; font-weight: 500; font-size: 0.9rem; background: rgba(255, 255, 255, 0.15); padding: 0.6rem 1rem; border-radius: 6px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">Hakkında</a>
+                <a href="contact.html" style="text-decoration: none; color: white; font-weight: 500; font-size: 0.9rem; background: rgba(255, 255, 255, 0.15); padding: 0.6rem 1rem; border-radius: 6px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">İletişim</a>
+            </nav>
+
+            <!-- SAĞ TARAF: ARAMA, FAVORİLER, SEPET -->
+            <div style="display: flex; align-items: center; gap: 0.6rem;">
+                <button class="icon-btn" onclick="toggleSearch()">🔍</button>
+                <button class="icon-btn" onclick="goToWishlist()">❤️</button>
+                <button class="icon-btn" onclick="goToCart()">🛒</button>
+            </div>
+        </div>
+    </header>
+
+	<section class="hero">
+		<div class="hero-content">
+			<div style="flex:1;">
+				<h1>Teknolojinin Gücünü Keşfet</h1>
+				<p>En yeni ve en kaliteli elektronik ürünler ile buluş</p>
+			</div>
+			<div class="cta-buttons">
+				<a id="products-btn" href="products.html" class="btn btn-primary">Ürünleri Gör</a>
+				<button id="categories-btn" class="btn btn-secondary">Kategoriler</button>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="container">
+			<h2 class="text-center mb-3">Ürün Kategorileri</h2>
+			<div class="categories" id="categories">
+				<div class="category-card reveal" onclick="window.location.href='products.html'">
+					<div class="category-icon">📱</div>
+					<h3 style="color: var(--text-light );">Tüm Ürünler</h3>
+				</div>
+				<div class="category-card reveal" onclick="window.location.href='products.html?category=phone'">
+					<div class="category-icon">📱</div>
+					<h3 style="color: var(--text-light);">Telefonlar</h3>
+				</div>
+				<div class="category-card reveal" onclick="window.location.href='products.html?category=laptop'">
+					<div class="category-icon">💻</div>
+					<h3 style="color: var(--text-light);">Bilgisayarlar</h3>
+				</div>
+				<div class="category-card reveal" onclick="window.location.href='products.html?category=tablet'">
+					<div class="category-icon">📲</div>
+					<h3 style="color: var(--text-light);">Tabletler</h3>
+				</div>
+				<div class="category-card reveal" onclick="window.location.href='products.html?category=watch'">
+					<div class="category-icon">⌚</div>
+					<h3 style="color: var(--text-light);">Saatler</h3>
+				</div>
+				<div class="category-card reveal" onclick="window.location.href='products.html?category=headphone'">
+					<div class="category-icon">🎧</div>
+					<h3 style="color:var(--text-light);">Kulaklıklar</h3>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ÖNE ÇIKAN ÜRÜNLER -->
+	<section class="section">
+		<div class="container">
+			<h2 class="text-center mb-3">Öne Çıkan Ürünler</h2>
+			<div class="products-grid">
+				<div class="product-card">
+					<div class="product-image">
+						 <img src="/public/img/telefon1.webp" alt="İphone 16 Pro">
+					</div>
+					<div class="product-info">
+						<div class="product-category">Telefonlar</div>
+						<div class="product-name">İphone 16 Pro</div>
+						<div class="product-footer">
+							<div class="product-price">69.499 ₺</div>
+							<a href="products.html" class="btn btn-outline">Daha Fazla</a>
+						</div>
+					</div>
+				</div>
+				<div class="product-card">
+					<div class="product-image">
+						<img src="/public/img/macbook2.jpeg" alt="MacBook Pro 2025">
+					</div>
+					<div class="product-info">
+						<div class="product-category">Bilgisayarlar</div>
+						<div class="product-name">MacBook Pro</div>
+						<div class="product-footer">
+							<div class="product-price">102.999 ₺</div>
+							<a href="products.html" class="btn btn-outline">Daha Fazla</a>
+						</div>
+					</div>
+				</div>
+				<div class="product-card">
+					<div class="product-image">
+						<img src="/public/img/kulaklik1.webp" alt="AirPods Max">
+					</div>
+					<div class="product-info">
+						<div class="product-category">Kulaklıklar</div>
+						<div class="product-name">Airpods Max</div>
+						<div class="product-footer">
+							<div class="product-price">29.299 ₺</div>
+							<a href="products.html" class="btn btn-outline">Daha Fazla</a>
+						</div>
+					</div>
+				</div>
+				<div class="product-card">
+					<div class="product-image">
+						<img src="/public/img/saat1.webp" alt="Apple Watch 2024">
+					</div>
+					<div class="product-info">
+						<div class="product-category">Saatler</div>
+						<div class="product-name">Apple Watch 2024</div>
+						<div class="product-footer">
+							<div class="product-price">12.199 ₺</div>
+							<a href="products.html" class="btn btn-outline">Daha Fazla</a>
+						</div>
+					</div>
+				</div>
+				<div class="product-card">
+					<div class="product-image">
+						<img src="/public/img/fotom1.jpg" alt="Canon 4K">
+					</div>
+					<div class="product-info">
+						<div class="product-category">Kameralar</div>
+						<div class="product-name">Canon 4K</div>
+						<div class="product-footer">
+							<div class="product-price">8.499 ₺</div>
+							<a href="products.html" class="btn btn-outline">Daha Fazla</a>
+						</div>
+					</div>
+				</div>
+				<div class="product-card">
+					<div class="product-image" style="width: 90%;">
+						<img src="/public/img/tab1.webp" alt="İpad Air">
+					</div>
+					<div class="product-info">
+						<div class="product-category">Tabletler</div>
+						<div class="product-name">İpad Air</div>
+						<div class="product-footer">
+							<div class="product-price">13.999 ₺</div>
+							<a href="products.html" class="btn btn-outline">Daha Fazla</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>ElektroShop</h4>
+                <p>En iyi elektronik ürünleri en uygun fiyatlarla sunuyoruz.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Hızlı Bağlantılar</h4>
+                <a href="index.html">Ana Sayfa</a>
+                <a href="products.html">Ürünler</a>
+                <a href="about.html">Hakkında</a>
+                <a href="contact.html">İletişim</a>
+            </div>
+            <div class="footer-section">
+                <h4>Müşteri Hizmetleri</h4>
+                <a href="/about.html">İade Politikası</a>
+                <a href="/about.html">Kargo Takibi</a>
+                <a href="/about.html">Sıkça Sorulan Sorular</a>
+            </div>
+            <div class="footer-section">
+                <h4>İletişim</h4>
+                <p>📧 kamildogan06@outlook.com</p>
+                <p>📱 +90 (537) 912 21 00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ElektroShop. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+	<script src="public/js/scroll.js"></script>
+	<script>
+		document.getElementById('categories-btn').addEventListener('click', function(){
+			document.getElementById('categories').scrollIntoView({behavior:'smooth'});
+		});
+
+		function goToCart(){ window.location.href = 'cart.html'; }
+		function goToWishlist(){ window.location.href = 'wishlist.html'; }
+		function toggleSearch(){
+			alert('Yakında Aktif Olcak!');
+		}
+	</script>
+	</body>
+	</html>
+

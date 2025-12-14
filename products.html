@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ürünler - ElektroShop</title>
+    <link rel="stylesheet" href="public/css/index.css">
+</head>
+<body>
+    <header>
+        <div class="header-content" style="display: flex; align-items: center; gap: 2rem; padding: 0.8rem 2rem; justify-content: space-between;">
+            <!-- SOL TARAF: LOGO -->
+            <a href="index.html" class="logo" style="text-decoration: none; cursor: pointer; font-size: 2rem; white-space: nowrap;">⚡ ElektroShop</a>
+
+            <!-- ORTA: NAV LINKLERI -->
+            <nav style="display: flex; gap: 1.5rem; align-items: center; flex: 1; justify-content: center;">
+                <a href="index.html" style="text-decoration: none; color: white; font-weight: 500; font-size: 0.9rem; background: rgba(255, 255, 255, 0.15); padding: 0.6rem 1rem; border-radius: 6px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">Ana Sayfa</a>
+                <a href="products.html" style="text-decoration: none; color: white; font-weight: 500; font-size: 0.9rem; background: rgba(255, 255, 255, 0.15); padding: 0.6rem 1rem; border-radius: 6px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">Ürünler</a>
+                <a href="about.html" style="text-decoration: none; color: white; font-weight: 500; font-size: 0.9rem; background: rgba(255, 255, 255, 0.15); padding: 0.6rem 1rem; border-radius: 6px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">Hakkında</a>
+                <a href="contact.html" style="text-decoration: none; color: white; font-weight: 500; font-size: 0.9rem; background: rgba(255, 255, 255, 0.15); padding: 0.6rem 1rem; border-radius: 6px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">İletişim</a>
+            </nav>
+
+            <!-- SAĞ TARAF: ARAMA, FAVORİLER, SEPET -->
+            <div style="display: flex; align-items: center; gap: 0.6rem;">
+                <button class="icon-btn" onclick="toggleSearch()">🔍</button>
+                <button class="icon-btn" onclick="goToWishlist()">❤️</button>
+                <button class="icon-btn" onclick="goToCart()">🛒</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1fr 280px; gap: 2rem; margin-bottom: 2rem;">
+                <!-- ANA ÜRÜNLER BÖLÜMÜ -->
+                <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <h2 style="margin-bottom: 2rem; color: var(--primary-color);">📦 Tüm Ürünler</h2>
+                    <div id="products-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;"></div>
+                </div>
+
+                <!-- SAĞ SIDEBAR - FİLTRELER -->
+                <div style="position: sticky; top: 100px; height: fit-content; display: flex; flex-direction: column; gap: 1.5rem;">
+                    <!-- KATEGORİ FİLTRESİ -->
+                    <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <h3 style="margin-bottom: 1rem; color: var(--primary-color); font-size: 1rem;">📂 Kategori</h3>
+                        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                            <button onclick="applyFilters('all', null)" class="category-btn" style="text-align: left; padding: 0.7rem 0.8rem; background: var(--primary-color); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9rem;">Tüm Ürünler</button>
+                            <button onclick="applyFilters('phone', null)" class="category-btn" style="text-align: left; padding: 0.7rem 0.8rem; background: #f5f5f5; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9rem;">📱 Telefonlar</button>
+                            <button onclick="applyFilters('laptop', null)" class="category-btn" style="text-align: left; padding: 0.7rem 0.8rem; background: #f5f5f5; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9rem;">💻 Bilgisayarlar</button>
+                            <button onclick="applyFilters('tablet', null)" class="category-btn" style="text-align: left; padding: 0.7rem 0.8rem; background: #f5f5f5; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9rem;">📲 Tabletler</button>
+                            <button onclick="applyFilters('watch', null)" class="category-btn" style="text-align: left; padding: 0.7rem 0.8rem; background: #f5f5f5; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9rem;">⌚ Saatler</button>
+                            <button onclick="applyFilters('headphone', null)" class="category-btn" style="text-align: left; padding: 0.7rem 0.8rem; background: #f5f5f5; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9rem;">🎧 Kulaklıklar</button>
+                            <button onclick="applyFilters('camera', null)" class="category-btn" style="text-align: left; padding: 0.7rem 0.8rem; background: #f5f5f5; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9rem;">📷 Kameralar</button>
+                        </div>
+                    </div>
+
+                    <!-- FİYAT ARALIGI FİLTRESİ -->
+                    <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <h3 style="margin-bottom: 1rem; color: var(--primary-color); font-size: 1rem;">💰 Fiyat Aralığı</h3>
+                        <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+                            <div>
+                                <label style="display: block; font-size: 0.85rem; color: var(--text-light); margin-bottom: 0.3rem;">En Düşük Fiyat</label>
+                                <input id="minPrice" type="number" min="0" max="100000" value="0" onchange="applyFilters(null, this.value)" placeholder="Min fiyat" style="width: 100%; padding: 0.6rem; border: 1px solid #ddd; border-radius: 4px; font-size: 0.9rem;">
+                            </div>
+                            <div>
+                                <label style="display: block; font-size: 0.85rem; color: var(--text-light); margin-bottom: 0.3rem;">En Yüksek Fiyat</label>
+                                <input id="maxPrice" type="number" min="0" max="100000" value="100000" onchange="applyFilters(null, this.value)" placeholder="Max fiyat" style="width: 100%; padding: 0.6rem; border: 1px solid #ddd; border-radius: 4px; font-size: 0.9rem;">
+                            </div>
+                        </div>
+                        <button onclick="resetFilters()" style="width: 100%; margin-top: 1rem; padding: 0.6rem; background: #f5f5f5; border: 1px solid #ddd; border-radius: 4px; cursor: pointer; font-size: 0.9rem;">Sıfırla</button>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>ElektroShop</h4>
+                <p>En iyi elektronik ürünleri en uygun fiyatlarla sunuyoruz.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Hızlı Bağlantılar</h4>
+                <a href="index.html">Ana Sayfa</a>
+                <a href="products.html">Ürünler</a>
+                <a href="about.html">Hakkında</a>
+                <a href="contact.html">İletişim</a>
+            </div>
+            <div class="footer-section">
+                <h4>Müşteri Hizmetleri</h4>
+                <a href="#">İade Politikası</a>
+                <a href="#">Kargo Takibi</a>
+                <a href="#">Sıkça Sorulan Sorular</a>
+            </div>
+            <div class="footer-section">
+                <h4>İletişim</h4>
+                <p>📧 info@elektroshop.com</p>
+                <p>📱 +90 (212) 555-0123</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ElektroShop. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+
+    <script>
+            const products = [
+            { id: 1, name: 'iPhone 16 Pro', category: 'phone', price: 69499, img: 'public/img/telefon1.webp', badge: '-15%' },
+            { id: 2, name: 'MacBook Air', category: 'laptop', price: 102999, img: 'public/img/macbook2.jpeg', badge: '-20%' },
+            { id: 3, name: 'iPad Air', category: 'tablet', price: 13999, img: 'public/img/tab1.webp', badge: '-10%' },
+            { id: 4, name: 'Apple Watch', category: 'watch', price: 12199, img: 'public/img/saat1.webp', badge: '' },
+            { id: 5, name: 'AirPods Max', category: 'headphone', price: 29299, img: 'public/img/kulaklik1.webp', badge: '-5%' },
+            { id: 6, name: 'Canon 4K', category: 'camera', price: 8499, img: 'public/img/fotom1.jpg', badge: '' },
+            { id: 7, name: 'Samsung Galaxy S25', category: 'phone', price: 54999, img: 'public/img/telefon2.webp', badge: '-12%' },
+            { id: 8, name: 'Macbook Pro', category: 'laptop', price: 75000, img: 'public/img/macbook1.jpg', badge: '-18%' },
+            { id: 9, name: 'Samsung Galaxy Tab', category: 'tablet', price: 28000, img: 'public/img/tab2.webp', badge: '' },
+            { id: 10, name: 'Samsung Galaxy Watch', category: 'watch', price: 8000, img: 'public/img/saat2.webp', badge: '' },
+            { id: 11, name: 'Sony WH-1000XM5', category: 'headphone', price: 6500, img: 'public/img/kulaklik2.jpg', badge: '' },
+            { id: 12, name: 'Sony A7R', category: 'camera', price: 55000, img: 'public/img/fotom2.jpg', badge: '' }
+        ];
+
+
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+        let currentCategory = 'all';
+        let currentMinPrice = 0;
+        let currentMaxPrice = 100000;
+
+        function init() {
+            displayProducts(products);
+            updateBadges();
+        }
+
+        function applyFilters(category, priceValue) {
+            // Kategori filtresi güncelleyin
+            if (category !== null) {
+                currentCategory = category;
+                // Kategori butonlarının stilini güncelle
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.style.background = '#f5f5f5';
+                    btn.style.color = 'black';
+                });
+                event.target.style.background = 'var(--primary-color)';
+                event.target.style.color = 'white';
+            }
+
+            // Fiyat filtresi güncelleyin
+            if (priceValue !== null) {
+                currentMinPrice = parseInt(document.getElementById('minPrice').value) || 0;
+                currentMaxPrice = parseInt(document.getElementById('maxPrice').value) || 100000;
+            }
+
+            // Ürünleri filtrele
+            const filtered = products.filter(p => {
+                const categoryMatch = currentCategory === 'all' || p.category === currentCategory;
+                const priceMatch = p.price >= currentMinPrice && p.price <= currentMaxPrice;
+                return categoryMatch && priceMatch;
+            });
+
+            displayProducts(filtered);
+        }
+
+        function resetFilters() {
+            currentCategory = 'all';
+            currentMinPrice = 0;
+            currentMaxPrice = 100000;
+            
+            document.getElementById('minPrice').value = 0;
+            document.getElementById('maxPrice').value = 100000;
+            
+            // Kategori butonlarını sıfırla
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.style.background = '#f5f5f5';
+                btn.style.color = 'black';
+            });
+            document.querySelectorAll('.category-btn')[0].style.background = 'var(--primary-color)';
+            document.querySelectorAll('.category-btn')[0].style.color = 'white';
+            
+            displayProducts(products);
+        }
+
+        function displayProducts(productsToShow) {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = '';
+
+            if (productsToShow.length === 0) {
+                grid.innerHTML = '<div class="empty-message" style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--text-light);">Bu kriterlere uygun ürün bulunamadı. Filtreleri değiştirmeyi deneyin.</div>';
+                return;
+            }
+
+            productsToShow.forEach(product => {
+                const inCart = cart.some(item => item.id === product.id);
+                const inWishlist = wishlist.some(item => item.id === product.id);
+
+                grid.innerHTML += `
+                    <div class="product-card" style="display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; padding: 1rem; border: 1px solid #eee; border-radius: 8px; align-items: start;">
+                        <div class="product-image" style="width:115px; height:115px; overflow:hidden; border-radius: 8px;">
+                        <img src="${product.img}" alt="${product.name}" style="width:100%; height:100%; object-fit:contain;">
+                        </div>
+                             <div style="flex: 1;">
+                            <div style="color: var(--primary-color); font-size: 0.8rem; font-weight: 600; margin-bottom: 0.3rem;">${getCategoryName(product.category)}</div>
+                            <h3 style="margin: 0.3rem 0; font-size: 1rem;">${product.name}</h3>
+                            <div style="font-size: 1.2rem; font-weight: bold; color: var(--primary-color); margin-bottom: 0.8rem;">${product.price.toLocaleString('tr-TR')} ₺</div>
+                            <div style="display: grid; grid-template-columns: 2fr 0.8fr; gap: 0.4rem;">
+                                <button class="btn btn-primary btn-small" onclick="addToCart(${product.id})" 
+                                    style="${inCart ? 'background: #4caf50; font-size: 0.75rem; padding: 0.4rem;' : 'font-size: 0.75rem; padding: 0.4rem;'}">
+                                    ${inCart ? '✓ Eklendi' : 'Ekle'}
+                                </button>
+                                <button class="btn btn-outline btn-small" onclick="toggleWishlist(${product.id})" 
+                                    style="${inWishlist ? 'background: #ff5252; color: white; font-size: 1rem;' : 'font-size: 1rem;'}">
+                                    ${inWishlist ? '❤️' : '🤍'}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function getCategoryName(category) {
+            const names = {
+                'phone': 'Telefonlar',
+                'laptop': 'Bilgisayarlar',
+                'tablet': 'Tabletler',
+                'watch': 'Saatler',
+                'headphone': 'Kulaklıklar',
+                'camera': 'Kameralar'
+            };
+            return names[category] || category;
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateBadges();
+            filterByCategory(currentCategory);
+        }
+
+        function toggleWishlist(productId) {
+            const existingItem = wishlist.find(item => item.id === productId);
+
+            if (existingItem) {
+                wishlist = wishlist.filter(item => item.id !== productId);
+            } else {
+                const product = products.find(p => p.id === productId);
+                wishlist.push(product);
+            }
+
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            updateBadges();
+            applyFilters(currentCategory, null);
+        }
+
+        function updateBadges() {
+            document.getElementById('cart-count').textContent = cart.length;
+            document.getElementById('wishlist-count').textContent = wishlist.length;
+        }
+
+        function goToCart() {
+            window.location.href = 'cart.html';
+        }
+
+        function goToWishlist() {
+            window.location.href = 'wishlist.html';
+        }
+        function toggleSearch() {
+            alert('Yakında Aktif Olacak!');
+        }
+
+        init();
+    </script>
+    <script src="public/js/search.js"></script>
+</body>
+</html>

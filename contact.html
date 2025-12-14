@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İletişim - ElektroShop</title>
+    <link rel="stylesheet" href="public/css/index.css">
+</head>
+<body>
+    <header>
+        <div class="header-content" style="display: flex; align-items: center; gap: 2rem; padding: 0.8rem 2rem; justify-content: space-between;">
+            <!-- SOL TARAF: LOGO -->
+            <a href="index.html" class="logo" style="text-decoration: none; cursor: pointer; font-size: 2rem; white-space: nowrap;">⚡ ElektroShop</a>
+
+            <!-- ORTA: NAV LINKLERI -->
+            <nav style="display: flex; gap: 1.5rem; align-items: center; flex: 1; justify-content: center;">
+                <a href="index.html" style="text-decoration: none; color: white; font-weight: 500; font-size: 0.9rem; background: rgba(255, 255, 255, 0.15); padding: 0.6rem 1rem; border-radius: 6px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">Ana Sayfa</a>
+                <a href="products.html" style="text-decoration: none; color: white; font-weight: 500; font-size: 0.9rem; background: rgba(255, 255, 255, 0.15); padding: 0.6rem 1rem; border-radius: 6px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">Ürünler</a>
+                <a href="about.html" style="text-decoration: none; color: white; font-weight: 500; font-size: 0.9rem; background: rgba(255, 255, 255, 0.15); padding: 0.6rem 1rem; border-radius: 6px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">Hakkında</a>
+                <a href="contact.html" style="text-decoration: none; color: white; font-weight: 500; font-size: 0.9rem; background: rgba(255, 255, 255, 0.15); padding: 0.6rem 1rem; border-radius: 6px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">İletişim</a>
+            </nav>
+
+            <!-- SAĞ TARAF: ARAMA, FAVORİLER, SEPET -->
+            <div style="display: flex; align-items: center; gap: 0.6rem;">
+                <button class="icon-btn" onclick="toggleSearch()">🔍</button>
+                <button class="icon-btn" onclick="goToWishlist()">❤️</button>
+                <button class="icon-btn" onclick="goToCart()">🛒</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1fr 1fr 300px; gap: 2rem; margin-bottom: 2rem;">
+                <!-- İLETİŞİM FORMU -->
+                <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <h2 style="margin-bottom: 1rem; color: var(--primary-color);">✉️ Bize Mesaj Gönderin</h2>
+                    <form onsubmit="handleSubmit(event)">
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Adınız</label>
+                            <input type="text" required style="width: 100%; padding: 0.6rem; border: 1px solid #ddd; border-radius: 4px; font-size: 0.9rem;" placeholder="Adınız">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Email</label>
+                            <input type="email" required style="width: 100%; padding: 0.6rem; border: 1px solid #ddd; border-radius: 4px; font-size: 0.9rem;" placeholder="email@örnek.com">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Konu</label>
+                            <input type="text" required style="width: 100%; padding: 0.6rem; border: 1px solid #ddd; border-radius: 4px; font-size: 0.9rem;" placeholder="Konunuz">
+                        </div>
+                        <div style="margin-bottom: 1.5rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Mesaj</label>
+                            <textarea required style="width: 100%; padding: 0.6rem; border: 1px solid #ddd; border-radius: 4px; min-height: 150px; font-size: 0.9rem; font-family: inherit;" placeholder="Mesajınız..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Gönder</button>
+                    </form>
+                </div>
+
+                <!-- İLETİŞİM BİLGİLERİ -->
+                <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <h2 style="margin-bottom: 1rem; color: var(--primary-color);">📋 İletişim Bilgileri</h2>
+                    
+                    <div style="background: var(--bg-light); padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem;">
+                        <p style="margin-bottom: 0.5rem;"><strong style="color: var(--primary-color);">📧 Email:</strong></p>
+                        <p style="color: var(--text-dark); margin-bottom: 1.5rem;">kamildogan06@outlook.com</p>
+                        
+                        <p style="margin-bottom: 0.5rem;"><strong style="color: var(--primary-color);">📞 Telefon:</strong></p>
+                        <p style="color: var(--text-dark); margin-bottom: 1.5rem;">+90 (537) 912 21 00</p>
+                        
+                        <p style="margin-bottom: 0.5rem;"><strong style="color: var(--primary-color);">🏢 Adres:</strong></p>
+                        <p style="color: var(--text-dark); margin-bottom: 1.5rem;">Ankara, Türkiye</p>
+                        
+                        <p style="margin-bottom: 0.5rem;"><strong style="color: var(--primary-color);">🕐 Çalışma Saatleri:</strong></p>
+                        <p style="color: var(--text-dark);">Her Gün 09:00 - 22:00</p>
+                    </div>
+                </div>
+
+                <!-- SIDEBAR -->
+                <div style="position: sticky; top: 100px; height: fit-content;">
+                    <!-- Favoriler -->
+                    <div style="background: linear-gradient(135deg, #ff6f00, #ff9100); color: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem;">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">❤️</div>
+                        <h3 style="margin-bottom: 0.5rem;">Favorilerim</h3>
+                        <p style="font-size: 0.9rem; opacity: 0.9; margin-bottom: 1rem;">Beğendiğiniz ürünları kaydedin</p>
+                        <button class="btn btn-secondary" style="background: white; color: #ff6f00; width: 100%; border: none;" onclick="window.location.href='wishlist.html'">Göster</button>
+                    </div>
+
+                    <!-- Sepetim -->
+                    <div style="background: linear-gradient(135deg, #1a73e8, #0d47a1); color: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem;">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🛒</div>
+                        <h3 style="margin-bottom: 0.5rem;">Sepetim</h3>
+                        <p style="font-size: 0.9rem; opacity: 0.9; margin-bottom: 1rem;">Alışveriş sepetinizi yönetin</p>
+                        <button class="btn btn-secondary" style="background: white; color: #1a73e8; width: 100%; border: none;" onclick="window.location.href='cart.html'">Aç</button>
+                    </div>
+
+                    <!-- Ana Sayfa -->
+                    <div style="background: linear-gradient(135deg, #4caf50, #66bb6a); color: white; padding: 1.5rem; border-radius: 8px;">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🏠</div>
+                        <h3 style="margin-bottom: 0.5rem;">Ana Sayfa</h3>
+                        <p style="font-size: 0.9rem; opacity: 0.9; margin-bottom: 1rem;">Öne çıkan ürünleri görmek için</p>
+                        <button class="btn btn-secondary" style="background: white; color: #4caf50; width: 100%; border: none;" onclick="window.location.href='index.html'">Git</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>ElektroShop</h4>
+                <p>En iyi elektronik ürünleri en uygun fiyatlarla ElektroShop da!!! </p>
+            </div>
+            <div class="footer-section">
+                <h4>Hızlı Bağlantılar</h4>
+                <a href="index.html">Ana Sayfa</a>
+                <a href="products.html">Ürünler</a>
+                <a href="about.html">Hakkında</a>
+                <a href="contact.html">İletişim</a>
+            </div>
+            <div class="footer-section">
+                <h4>Müşteri Hizmetleri</h4>
+                <a href="/about.html">İade Politikası</a>
+                <a href="/about.html">Kargo Takibi</a>
+                <a href="/about.html">Sıkça Sorulan Sorular</a>
+            </div>
+            <div class="footer-section">
+                <h4>İletişim</h4>
+                <p>📧 kamildogan06@outlook.com</p>
+                <p>📱 +90 (537) 912 21 00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ElektroShop. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <script src="public/js/search.js"></script>
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('✓ Mesajınız başarıyla gönderildi. En kısa sürede sizinle iletişime geçeceğiz!');
+            event.target.reset();
+        }
+
+        function goToCart() { window.location.href = 'cart.html'; }
+        function goToWishlist() { window.location.href = 'wishlist.html'; }
+        function toggleSearch(){
+			alert('Yakında Aktif Olcak!');
+		}
+    </script>
+</body>
+</html>
